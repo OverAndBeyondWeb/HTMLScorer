@@ -4,7 +4,11 @@
   "description": "Scoring Project =============",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "npm run start --prefix client",
+    "client-install": "npm install --prefix client",
+    "server": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "concurrently \"npm run server\" npm run client"
   },
   "repository": {
     "type": "git",
@@ -17,6 +21,10 @@
   },
   "homepage": "https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.6.0",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "sequelize": "^4.38.0"
   }
 }
