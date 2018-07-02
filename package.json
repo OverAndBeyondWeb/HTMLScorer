@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb/issues"
   },
-  "homepage": "https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb#readme"
+  "homepage": "https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
