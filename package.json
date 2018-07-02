@@ -1,0 +1,19 @@
+{
+  "name": "scoring-project-overandbeyondweb",
+  "version": "1.0.0",
+  "description": "Scoring Project =============",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb.git"
+  },
+  "author": "Juan Fox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb/issues"
+  },
+  "homepage": "https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb#readme"
+}
