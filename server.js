@@ -8,10 +8,7 @@ const PORT = process.env.PORT || 3001;
 // Require db models
 const db = require('./models');
 
-// Test route
-app.get('/', (req, res) => {
-  res.send('App is running');
-});
+app.use(require('./routes/apiRoutes')(app));
 
 
 db.sequelize.sync({force:true}).then(() => {
