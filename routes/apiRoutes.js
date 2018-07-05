@@ -4,6 +4,9 @@ const db = require('../models');
 // Use express router
 const router = require('express').Router();
 
+// Require scoring function
+const assessFile = require('../utils/scoring');
+
 module.exports = app => {
 
   // Get all files from the database
@@ -22,6 +25,11 @@ module.exports = app => {
         res.json(file);
       })
       .catch();
+  });
+
+  router.post('/api/assess-file', (req, res) => {
+    console.log(req.body);
+    assessFile(req.body.name, req.body.id, res);
   });
 
   return router;

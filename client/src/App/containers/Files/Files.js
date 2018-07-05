@@ -36,6 +36,13 @@ class Files extends Component {
     return rows;
   }
 
+  runAssessment = (name, id) => {
+    console.log(name, id);
+    axios.post('/api/assess-file', {name: name, id: id})
+      .then()
+      .catch();
+  }
+
   render() {
 
     const rows = this.buildRows(this.state.files, 4);
@@ -46,7 +53,12 @@ class Files extends Component {
           {row.map(file => {
             return (
               <Column colType={'1-of-4'}>
-                <File name={file.name} key={file.id} />
+                <File 
+                  name={file.name}
+                  id={file.id} 
+                  key={file.id}
+                  runAssessment={this.runAssessment}
+                />
               </Column>
             );
           })}
