@@ -11,7 +11,7 @@ module.exports = app => {
 
   // Get all files from the database
   router.get('/api/files', (req, res) => {
-    db.File.findAll({})
+    db.File.findAll({include: [db.Assessment]})
       .then(files => {
         res.json(files);
       })
@@ -27,8 +27,15 @@ module.exports = app => {
       .catch();
   });
 
+  router.get('/api/scores', (req, res) => {
+    db.Assessment.findAll({include: [db.File]})
+      .then(scores => {
+        res.json(scores);
+      })
+      .catch();
+  });
+
   router.post('/api/assess-file', (req, res) => {
-    console.log(req.body);
     assessFile(req.body.name, req.body.id, res);
   });
 

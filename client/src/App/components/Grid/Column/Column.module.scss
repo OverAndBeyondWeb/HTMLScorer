@@ -1,8 +1,7 @@
 // Variables
-$gutter: 20px;
+$gutter: 35px;
 
 .col {
-  background: blue;
   float: left;
 
   &:not(:last-child) {
