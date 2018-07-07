@@ -1,0 +1,22 @@
+.Button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-weight: bold;
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.full {
+  background:linear-gradient(to right bottom, #1B0D05, #EF773A);
+}
+
+.ghost {
+  color: #a25127;
+  border: 2px solid #a25127;
+}

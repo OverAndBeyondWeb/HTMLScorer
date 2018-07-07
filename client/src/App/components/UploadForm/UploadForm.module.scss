@@ -1,6 +1,7 @@
 .UploadForm {
   width: 80%;
   min-height: 100%;
+  color: darken(#a25127, 10%);
   float: right;
 }
 
@@ -9,4 +10,37 @@ form {
 }
 label, input, button, textarea {
   display: block;
+  margin-bottom: 40px;
+}
+
+
+.upload {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+
+  & + label {
+    display: inline-block;
+    
+    color: #EF773A;
+    border: 2px solid #EF773A;
+    // border-image: linear-gradient(to right bottom, #1B0D05, #EF773A);
+    border-radius: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+
+  &:focus + label{
+    outline: 1px dotted #000;
+	  outline: -webkit-focus-ring-color auto 5px;
+  }
+  
+}
+
+textarea {
+  width: 70%;
+  color: lighten(#a25127, 10%);
+  border: 2px solid #a25127;
+  border-radius: 5px;
 }

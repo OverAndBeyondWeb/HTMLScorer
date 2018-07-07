@@ -5,11 +5,17 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import UploadForm from '../../components/UploadForm/UploadForm';
 
 class Upload extends Component {
+
+  test = (e) => {
+    console.log('hit');
+    console.log(e);
+  }
+
   render() {
     return (
       <div className={styles.Upload}>
         <Sidebar/>
-        <UploadForm/>
+        <UploadForm test={this.test}/>
       </div>
     )
   }

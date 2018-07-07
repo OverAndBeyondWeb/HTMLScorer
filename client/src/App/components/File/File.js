@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './File.module.scss';
 
+import Button from '../Button/Button'
+
 const File = (props) => {
   return (
     <div className={styles.File}>
@@ -10,10 +12,13 @@ const File = (props) => {
       
       <div className={styles.filename}>{props.name}</div>
       <hr/>
-      <a 
+      <div 
         href="#"
-        className={styles.btn} 
-        onClick={() => props.runAssessment(props.name, props.id)}>Run Assessment</a>
+        className={styles.btnContainer} 
+        onClick={() => props.runAssessment(props.name, props.id)}
+      >
+        <Button btnText={'Run Assessment'}/>
+      </div>
     </div>
   )
 };

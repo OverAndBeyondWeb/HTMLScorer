@@ -25,15 +25,32 @@ hr {
   background:linear-gradient(to right bottom, #EF773A, #1B0D05);
 }
 
-.btn {
+.btnText {
+  transform: translateX(7px);
+}
+
+.arrow {
+  font-weight: bold;
+  opacity: 0;
+  transition: all .3s;
+}
+
+.btnContainer {
   width: 80%;
   height: 45px;
-  background:linear-gradient(to right bottom, #1B0D05, #EF773A);
   color: white;
   line-height: 45px;
-  text-decoration: none;
   border-radius: 5px;
   position: absolute;
   left: 10%;
   bottom: 10px;
+
+  &:hover .btnText {
+    transform: translateX(-5px);
+  }
+
+  &:hover .arrow {
+    opacity: 1
+  }
 }
+
