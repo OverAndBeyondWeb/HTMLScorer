@@ -18,6 +18,16 @@ module.exports = app => {
       .catch();
   });
 
+  // Retrieve 1 file from request params
+  router.get('/api/file/:id', (req, res) => {
+    db.File.findById(req.params.id, {include: [db.Assessment]})
+      .then(file => {
+        console.log('backend');
+        res.json(file);
+      })
+      .catch(err => console.log(err));
+  });
+
   // Create 1 file from name off of request body
   router.post('/api/file', (req, res) => {
     db.File.create({name: req.body.name})

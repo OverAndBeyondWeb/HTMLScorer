@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import styles from './FileDetails.module.scss'
 
 import FileDetail from '../../components/FileDetail/FileDetail';
+import Button from '../../components/Button/Button';
 
 import axios from 'axios';
 
@@ -10,11 +11,21 @@ class FileDetails extends Component {
 
   state = {
     activeFile: this.props.activeFile,
-    filenamesAndIds: this.props.filenamesAndIds
+    filenamesAndIds: this.props.filenamesAndIds,
+    activeFileDataObject: null
   }
 
   componentDidMount() {
-    //axios.get('/file/' + activeFile.id)
+    this.retrieveFile(this.state.activeFile.fileId);
+  }
+
+  retrieveFile = (fileId) => {
+    axios.get('/api/file/' + fileId)
+      .then(resp => {
+        console.log(resp.data);
+        this.setState({activeFileDataObject: resp.data});
+      })
+      .catch(err => console.log(err.message));
   }
 
   currentFileIndex = () => {
@@ -29,10 +40,15 @@ class FileDetails extends Component {
       : this.currentFileIndex() - 1;
 
       this.setState({activeFile: this.state.filenamesAndIds[prevIndex]});
+      this.retrieveFile(this.state.filenamesAndIds[prevIndex].fileId);
   }
 
   nextFile = () => {
 
+  }
+
+  runAssessment = () => {
+    console.log('assessed');
   }
 
   render() {
@@ -42,15 +58,34 @@ class FileDetails extends Component {
           <h1>{this.state.activeFile.filename}</h1>
           <nav>
             <ul>
-              <li onClick={this.prevFile}>
-                Prev File
+              <li>
+                <Button 
+                clicked={this.prevFile}
+                type={'ghost'}
+                width={'auto'}
+                >
+                  Prev File
+                </Button>
               </li>
               <li>
-                <Link to="/">Next File</Link>
+                <Button 
+                  clicked={this.prevFile}
+                  type={'ghost'}
+                  width={'100%'}
+                >
+                  Next File
+                </Button>
               </li>
+              
+              
             </ul>
           </nav>
-          <Route path="/file-detail/:id" component={FileDetail}/>
+          <Route path="/file-detail/:id"
+            render={() => (<FileDetail
+                      file={this.state.activeFileDataObject} 
+                      runAssessment={this.runAssessment}
+            />)}
+          />
         
       </div>
     )

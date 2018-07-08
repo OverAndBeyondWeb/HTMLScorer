@@ -6,6 +6,7 @@ const Button = (props) => {
     <div
       className={[styles.Button, styles[props.type]].join(' ')}
       style={{width: props.width}}
+      onClick={props.clicked}
     >
       {props.children}
     </div>
