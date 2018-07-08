@@ -2,8 +2,31 @@
   width: 20%;
   height: 100%;
   background:linear-gradient(to right bottom, #1B0D05, #83411F);
-  color: #fff;
+  color: hsla(60, 56%, 91%, .6);
   text-align: center;
   padding-top: 50px;
   float: left;
+
+  .filenamesList {
+    margin-top: 25px;
+  }
+
+  .filename {
+    list-style: none;
+    text-transform: capitalize;
+    margin-bottom: 7px;
+    cursor: pointer;
+
+    span {
+      display: inline-block;
+      border-bottom: 2px solid transparent;
+      transition: all .3s;
+      
+      &:hover {
+        color: lighten(#f5f5dc, 2%);
+        border-color:#f5f5dc;
+      }
+      
+    }
+  }
 }

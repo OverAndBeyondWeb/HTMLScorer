@@ -29,6 +29,10 @@ const UploadForm = (props) => {
         
         <Button type={'ghost'} width={'12%'}>
           Add File
+          <span className={styles.plusIcon}>
+          <i class="fas fa-plus-circle"></i>
+          </span>
+          
         </Button>
         <textarea name="notes" id="notes" cols="30" rows="5" defaultValue="Add notes here...">
           

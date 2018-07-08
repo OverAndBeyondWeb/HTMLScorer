@@ -9,18 +9,6 @@ import axios from 'axios';
 
 class Files extends Component {
 
-  state = {
-    files: []
-  }
-
-  componentDidMount() {
-    axios.get('/api/files')
-      .then(resp => {
-        this.setState({files: resp.data});
-      })
-      .catch();
-  }
-
   buildRows = (files, filesPerRow) => {
     const rows = [];
     let rowIndex = 0;
@@ -45,7 +33,7 @@ class Files extends Component {
 
   render() {
 
-    const rows = this.buildRows(this.state.files, 4);
+    const rows = this.buildRows(this.props.files, 4);
 
     const transformedRows = rows.map(row => {
       return (
@@ -70,55 +58,6 @@ class Files extends Component {
       <div className={styles.Files}>
         <h1>This is the Files component</h1>
         {transformedRows}
-        <Row>
-          <Column colType={'1-of-2'}>
-            This is a 50% column
-          </Column>
-          <Column colType={'1-of-2'}>
-            This is a 50% column
-          </Column>
-        </Row>
-        <Row>
-          <Column colType={'1-of-3'}>
-            This is a 1/3 column
-          </Column>
-          <Column colType={'1-of-3'}>
-            This is a 1/3 column
-          </Column>
-          <Column colType={'1-of-3'}>
-            This is a 1/3 column
-          </Column>
-        </Row>
-        <Row>
-          <Column colType={'1-of-3'}>
-            This is a 1/3 column
-          </Column>
-          <Column colType={'2-of-3'}>
-            This is a 2/3 column
-          </Column>
-        </Row>
-        <Row>
-          <Column colType={'1-of-4'}>
-            This is a 1/3 column
-          </Column>
-          <Column colType={'1-of-4'}>
-            This is a 1/3 column
-          </Column>
-          <Column colType={'1-of-4'}>
-            This is a 1/3 column
-          </Column>
-          <Column colType={'1-of-4'}>
-            This is a 1/3 column
-          </Column>
-        </Row>
-        <Row>
-          <Column colType={'1-of-4'}>
-            This is a 1/3 column
-          </Column>
-          <Column colType={'3-of-4'}>
-            This is a 2/3 column
-          </Column>
-        </Row>
       </div>
     )
   }

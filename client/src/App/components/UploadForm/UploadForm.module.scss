@@ -7,14 +7,19 @@
   form {
     padding: 50px;
   }
+
   label, input, button, textarea {
     display: block;
     margin-bottom: 40px;
   }
+
+  textarea {
+    width: 70%;
+    color: lighten(#a25127, 10%);
+    border: 2px solid #a25127;
+    border-radius: 5px;
+  }
 }
-
-
-
 
 .upload {
   width: 0.1px;
@@ -40,9 +45,8 @@
   
 }
 
-textarea {
-  width: 70%;
-  color: lighten(#a25127, 10%);
-  border: 2px solid #a25127;
-  border-radius: 5px;
+.plusIcon {
+  margin-left: 10px;
+  font-size: 22px;
 }
+
