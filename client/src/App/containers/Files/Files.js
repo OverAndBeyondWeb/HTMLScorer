@@ -11,13 +11,17 @@ class Files extends Component {
 
   buildRows = (files, filesPerRow) => {
     const rows = [];
+    const filesCopy = [...files];
     let rowIndex = 0;
 
-    while(files.length !== 0) {
-      rows[rowIndex]= [];
+    while(filesCopy.length !== 0) {
+      rows[rowIndex] = {};
+      rows[rowIndex]['columnsArray'] = [];
+      rows[rowIndex]['id'] = rowIndex;
+
       for (let i=0;i<filesPerRow;i++) {
-        rows[rowIndex].push(files.pop());
-        if (files.length === 0) break;
+        rows[rowIndex]['columnsArray'].push(filesCopy.pop());
+        if (filesCopy.length === 0) break;
       }
       rowIndex++;
     }
@@ -25,26 +29,22 @@ class Files extends Component {
   }
 
   runAssessment = (name, id) => {
-    console.log(name, id);
     axios.post('/api/assess-file', {name: name, id: id})
       .then()
       .catch();
   }
 
   render() {
-
     const rows = this.buildRows(this.props.files, 4);
-
     const transformedRows = rows.map(row => {
       return (
-        <Row>
-          {row.map(file => {
+        <Row key={row.id}>
+          {row.columnsArray.map(file => {
             return (
-              <Column colType={'1-of-4'}>
+              <Column colType={'1-of-4'} key={file.id}>
                 <File 
                   name={file.name}
                   id={file.id} 
-                  key={file.id}
                   runAssessment={this.runAssessment}
                 />
               </Column>
