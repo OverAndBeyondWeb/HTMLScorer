@@ -13,7 +13,13 @@ const File = (props) => {
       
       <div className={styles.filename}>{props.name}</div>
       <hr/>
-      <Checkbox/>
+      <div className={styles.action}>
+        <Checkbox/>
+        <Button type={'details'} width={'30%'}>
+          Details...
+        </Button>
+      </div>
+      
     </div>
   )
 };

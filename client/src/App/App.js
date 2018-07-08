@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Upload from './containers/Upload/Upload';
 import Files from './containers/Files/Files';
+import Modal from './components/Modal/Modal';
 
 //styles
 import './SCSS/App.scss';
@@ -24,6 +25,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Modal>
+          <div style={{color: 'blue'}}>
+            This is the Modal
+          </div>
+        </Modal>
         <Upload files={this.state.files}/>
         <Files files={this.state.files}/>
       </div>

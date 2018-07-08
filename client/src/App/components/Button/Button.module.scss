@@ -20,3 +20,16 @@
   color: #a25127;
   border: 2px solid #a25127;
 }
+
+.details {
+  @extend .ghost;
+  border-radius: 0 5px 5px 0;
+  border-width: 1px;
+  float: right;
+  padding: 6px;
+  transition: all .3s;
+
+  &:hover {
+    transform: scale(1.03); 
+  }
+}
