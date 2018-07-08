@@ -1,0 +1,15 @@
+.FileDetails {
+  padding: 20px;
+
+  li {
+    list-style: none;
+
+    &:first-child {
+      float: left;
+    }
+
+    &:last-child {
+      float: right;
+    }
+  }
+}

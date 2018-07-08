@@ -8,7 +8,7 @@ const Modal = (props) => {
       <div className={styles.content}>
         {props.children}
       </div>
-      <div className={styles.backdrop}></div>
+      <div className={styles.backdrop} onClick={props.clicked}></div>
     </div>
   )
 };

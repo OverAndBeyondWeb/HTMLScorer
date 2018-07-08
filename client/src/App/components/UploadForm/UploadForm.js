@@ -30,7 +30,7 @@ const UploadForm = (props) => {
         <Button type={'ghost'} width={'12%'}>
           Add File
           <span className={styles.plusIcon}>
-          <i class="fas fa-plus-circle"></i>
+          <i className="fas fa-plus-circle"></i>
           </span>
           
         </Button>
