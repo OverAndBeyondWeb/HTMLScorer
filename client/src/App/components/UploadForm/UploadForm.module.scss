@@ -3,15 +3,17 @@
   min-height: 100%;
   color: darken(#a25127, 10%);
   float: right;
+
+  form {
+    padding: 50px;
+  }
+  label, input, button, textarea {
+    display: block;
+    margin-bottom: 40px;
+  }
 }
 
-form {
-  padding: 50px;
-}
-label, input, button, textarea {
-  display: block;
-  margin-bottom: 40px;
-}
+
 
 
 .upload {

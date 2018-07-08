@@ -1,0 +1,51 @@
+.Checkbox {
+    display: block;
+    width: calc(100% - 40px);
+    background:linear-gradient(to right bottom, #1B0D05, #EF773A);
+    color: white;
+    text-align: center;
+    line-height: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    bottom: 10px;
+
+    
+
+    .checkbg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px inset rgba(#e5d5bc, .6); 
+        opacity: 1;
+        position: absolute;
+        left: 50px;
+        transition: all .3s;   
+    }
+
+    .icon {
+        display: inline-block;
+        font-size: 16px;
+        color: green;
+        opacity: 0;
+        position: absolute;
+        left: 50px;
+        transition: all .5s;
+    }
+
+    input[type="checkbox"] {
+        display: none;
+
+        &:checked ~ .icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        &:checked ~ .checkbg {
+            opacity: 0;
+        }
+    }
+
+
+}

@@ -3,12 +3,12 @@ import styles from './Button.module.scss';
 
 const Button = (props) => {
   return (
-    <button
+    <div
       className={[styles.Button, styles[props.type]].join(' ')}
       style={{width: props.width}}
     >
       {props.children}
-    </button>
+    </div>
   )
 };
 

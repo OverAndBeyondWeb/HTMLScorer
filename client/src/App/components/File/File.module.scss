@@ -13,21 +13,18 @@
   &:hover {
     transform: scale(1.02);
   }
+
+  hr {
+    border: none;
+    height: 3px;
+    background:linear-gradient(to right bottom, #EF773A, #1B0D05);
+  }
 }
 
 .filename {
   text-transform: capitalize;
 }
 
-hr {
-  border: none;
-  height: 3px;
-  background:linear-gradient(to right bottom, #EF773A, #1B0D05);
-}
-
-.btnText {
-  transform: translateX(7px);
-}
 
 .arrow {
   font-weight: bold;
@@ -36,21 +33,9 @@ hr {
 }
 
 .btnContainer {
-  width: 80%;
-  height: 45px;
-  color: white;
-  line-height: 45px;
-  border-radius: 5px;
+  width: calc(100% - 40px);
   position: absolute;
-  left: 10%;
   bottom: 10px;
-
-  &:hover .btnText {
-    transform: translateX(-5px);
-  }
-
-  &:hover .arrow {
-    opacity: 1
-  }
 }
+
 

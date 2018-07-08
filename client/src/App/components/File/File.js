@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './File.module.scss';
 
-import Button from '../Button/Button'
+import Button from '../Button/Button';
+import Checkbox from '../Checkbox/Checkbox';
 
 const File = (props) => {
   return (
@@ -12,13 +13,7 @@ const File = (props) => {
       
       <div className={styles.filename}>{props.name}</div>
       <hr/>
-      <div 
-        href="#"
-        className={styles.btnContainer} 
-        onClick={() => props.runAssessment(props.name, props.id)}
-      >
-        <Button btnText={'Run Assessment'}/>
-      </div>
+      <Checkbox/>
     </div>
   )
 };
