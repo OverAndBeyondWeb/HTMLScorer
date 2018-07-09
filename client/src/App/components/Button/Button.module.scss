@@ -33,3 +33,8 @@
     transform: scale(1.03); 
   }
 }
+
+.topbarRunBtn {
+  @extend .full;
+  line-height: 0;
+}

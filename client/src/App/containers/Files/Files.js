@@ -3,7 +3,9 @@ import styles from './Files.module.scss';
 
 import Row from '../../components/Grid/Row/Row';
 import Column from '../../components/Grid/Column/Column';
+import Topbar from '../../components/Topbar/Topbar';
 import File from '../../components/File/File';
+import Button from '../../components/Button/Button';
 
 import axios from 'axios';
 
@@ -45,7 +47,7 @@ class Files extends Component {
                 <File 
                   name={file.name}
                   id={file.id} 
-                  runAssessment={this.runAssessment}
+                  showFileDetails={() => this.props.showFileDetails(file.id, file.name)}
                 />
               </Column>
             );
@@ -56,7 +58,23 @@ class Files extends Component {
 
     return (
       <div className={styles.Files}>
-        <h1>This is the Files component</h1>
+        <Topbar class={'filesComponent'}>
+          <h1>HTML Scorer</h1>
+          <nav>
+            <ul>
+              <li><a>Selected Files[0]</a></li>
+              <li>
+                <Button type={'topbarRunBtn'} width={'auto'}>
+                Run Assessments
+                <span className={styles.playIcon}>
+                <i className="fas fa-play"></i>
+                </span>
+              </Button>
+              </li>
+            </ul>
+          </nav>
+          <hr/>
+        </Topbar>
         {transformedRows}
       </div>
     )

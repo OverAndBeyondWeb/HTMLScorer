@@ -50,6 +50,7 @@ class App extends Component {
                           })}
                         />
                     </Modal>);
+                    
     const showModal = this.state.showModal ? modalEl : null;
     return (
       <Router>

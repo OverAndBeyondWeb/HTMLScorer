@@ -1,15 +1,32 @@
 .FileDetails {
   padding: 20px;
+  color: #30180a;
+  text-align: center;
+  text-transform: capitalize;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  h1 {
+    border-bottom: 1px solid #a25127;
+  }
 
   li {
     list-style: none;
+    position: absolute;
 
     &:first-child {
-      float: left;
+     left: 10px;
+     top: 10px;
     }
 
     &:last-child {
-      float: right;
+      right: 10px;
+      top: 10px;
     }
   }
 }

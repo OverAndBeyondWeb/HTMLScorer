@@ -8,6 +8,11 @@
   text-shadow: 1px 1px 3px rgba( rgb(116, 58, 30), 1);
   padding: 0 35px;
 
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
   h1 {
     float: left;
   }
@@ -64,4 +69,14 @@
     transform: translateY(-20px) scaleX(1.052);
     clear: both;
   }
+}
+
+.filesComponent {
+  @extend .Topbar;
+  width: 100%;
+  margin-bottom: 50px;
+  padding: 0 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

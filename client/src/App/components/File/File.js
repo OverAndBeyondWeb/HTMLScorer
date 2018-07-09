@@ -15,7 +15,7 @@ const File = (props) => {
       <hr/>
       <div className={styles.action}>
         <Checkbox/>
-        <Button type={'details'} width={'30%'}>
+        <Button type={'details'} width={'30%'} clicked={props.showFileDetails}>
           Details...
         </Button>
       </div>

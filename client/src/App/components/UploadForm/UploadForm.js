@@ -8,7 +8,7 @@ const UploadForm = (props) => {
 
   return (
     <div className={styles.UploadForm}>
-      <Topbar>
+      <Topbar class={'uploadFormComponent'}>
         <h1>HTML Scorer</h1>
         <nav>
           <ul>
@@ -27,7 +27,7 @@ const UploadForm = (props) => {
           Choose a file...
         </label>
         
-        <Button type={'ghost'} width={'12%'}>
+        <Button type={'ghost'} width={'20%'}>
           Add File
           <span className={styles.plusIcon}>
           <i className="fas fa-plus-circle"></i>
