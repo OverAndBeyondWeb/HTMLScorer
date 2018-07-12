@@ -12,18 +12,52 @@ class FileDetails extends Component {
   state = {
     activeFile: this.props.activeFile,
     filenamesAndIds: this.props.filenamesAndIds,
-    activeFileDataObject: null,
-    scores: {}
+    scores: {},
+    startDate: '',
+    endDate: ''
   }
 
   componentDidMount() {
+    // Call api with id currently in state
     this.retrieveFile(this.state.activeFile.fileId);
   }
 
+  // Make API call using passed in id
   retrieveFile = (fileId) => {
-    axios.get('/api/file/' + fileId)
+
+    // API call to get assessments
+    axios.get('/api/file-assessments/' + fileId)
       .then(resp => {
-        let scoresArray = resp.data.Assessments.map(assessment => assessment.score);
+        
+        // Create an array of scores from assessments
+        let scoresArray = resp.data.map(assessment => assessment.score);
+
+        // Create an object of scores from the scoresArray
+        let scores = {
+          allScores: this.getScoresInRange(scoresArray),
+          lowScore: this.getLowScore(scoresArray),
+          highScore: this.getHighScore(scoresArray),
+          avgScore: this.getAvgScore(scoresArray)
+        }
+
+        // Set the scores object in state
+        this.setState({scores});
+      })
+      // Log errors if unsuccessful
+      .catch(err => console.log(err.message));
+  }
+
+  retrieveDateRangeScores = () => {
+   
+    axios.get('/api/date-range/' + this.state.activeFile.fileId, {
+      params: {
+        startDate: this.state.startDate || '2018-01-01',
+        endDate: this.state.endDate || '2018-12-31'
+      }
+    })
+      .then(resp => {
+        console.log(resp.data);
+        let scoresArray = resp.data.map(assessment => assessment.score);
         let scores = {
           allScores: this.getScoresInRange(scoresArray),
           lowScore: this.getLowScore(scoresArray),
@@ -31,6 +65,7 @@ class FileDetails extends Component {
           avgScore: this.getAvgScore(scoresArray)
         }
         this.setState({scores});
+        console.log(this.state.activeFile);
       })
       .catch(err => console.log(err.message));
   }
@@ -52,6 +87,12 @@ class FileDetails extends Component {
     return scoresArray.length > 0 ? scoresArray.join(', ') : 0;
   }
 
+  handleDateChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
   currentFileIndex = () => {
     
     const filenames = this.state.filenamesAndIds.map(file => file.filename);
@@ -63,17 +104,26 @@ class FileDetails extends Component {
       ? this.state.filenamesAndIds.length - 1
       : this.currentFileIndex() - 1;
 
-      this.setState({activeFile: this.state.filenamesAndIds[prevIndex]});
-      this.retrieveFile(this.state.filenamesAndIds[prevIndex].fileId);
+      this.setState(
+        prevState => {
+          return {activeFile: this.state.filenamesAndIds[prevIndex]}
+        },
+        this.retrieveDateRangeScores
+      );
+    
   }
 
   nextFile = () => {
     let nextIndex = this.currentFileIndex() === this.state.filenamesAndIds.length - 1
       ? 0
       : this.currentFileIndex() + 1;
-
-      this.setState({activeFile: this.state.filenamesAndIds[nextIndex]});
-      this.retrieveFile(this.state.filenamesAndIds[nextIndex].fileId);
+      console.log(nextIndex);
+      this.setState(
+        prevState => {
+          return {activeFile: this.state.filenamesAndIds[nextIndex]}
+        },
+        this.retrieveDateRangeScores
+      );
   }
 
   runAssessment = () => {
@@ -103,7 +153,7 @@ class FileDetails extends Component {
               </li>
               <li>
                 <Button 
-                  clicked={this.prevFile}
+                  clicked={this.nextFile}
                   type={'ghost'}
                   width={'100%'}
                 >
@@ -114,9 +164,11 @@ class FileDetails extends Component {
               
             </ul>
           </nav>
-          <Route path="/file-detail/:id"
+          <Route path="/file-detail"
             render={() => (<FileDetail
                       scores={this.state.scores} 
+                      handleDateChange={this.handleDateChange}
+                      retrieveDateRangeScores={this.retrieveDateRangeScores}
                       runAssessment={this.runAssessment}
             />)}
           />

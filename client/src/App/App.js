@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Upload from './containers/Upload/Upload';
 import Files from './containers/Files/Files';
 import Modal from './components/Modal/Modal';
 import FileDetails from './containers/FileDetails/FileDetails';
 
-//styles
+// Global styles
 import './SCSS/App.scss';
 
+// Reference axios library
 import axios from 'axios';
 
 class App extends Component {
@@ -28,7 +29,6 @@ class App extends Component {
 
   closeModal = () => {
     this.setState({showModal: false, activeFile: null})
-    window.history.pushState(null, null, '/');
   }
 
   openModal = () => {
@@ -37,7 +37,6 @@ class App extends Component {
 
   showFileDetails = (fileId, filename) => {
     this.setState({activeFile: {fileId, filename}});
-    window.history.pushState(null, null, '/file-detail/file-' + fileId);
     this.openModal();
   }
 

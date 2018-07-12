@@ -7,9 +7,9 @@ const Sidebar = (props) => {
   const filenames = props.files.map(file => {
     return (
       <li className={styles.filename} key={file.id}>
-        <span onClick={(fileId, filename) => props.showFileDetails(file.id, file.name)}>
+        <Link to={'/file-detail/file-' + file.id } onClick={(fileId, filename) => props.showFileDetails(file.id, file.name)}>
           {file.name}
-        </span>
+        </Link>
       </li>
     )
   });

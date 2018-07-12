@@ -10,15 +10,25 @@
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
+  transition: all .2s;
+
 }
 
 .full {
-  background:linear-gradient(to right bottom, #1B0D05, #EF773A);
+  background: linear-gradient(to right bottom, #1B0D05, #EF773A);
+
+  &:active {
+    background: linear-gradient(to right bottom, #5D2E16, #a25127);
+  }
 }
 
 .ghost {
   color: #a25127;
   border: 2px solid #a25127;
+
+  &:active {
+    background: #a25127;
+  }
 }
 
 .details {
@@ -32,6 +42,13 @@
   &:hover {
     transform: scale(1.03); 
   }
+}
+
+.changeDate {
+  @extend .ghost;
+  display: inline-block;
+  margin-left: 10px;
+  padding: 5px;
 }
 
 .topbarRunBtn {

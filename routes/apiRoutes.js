@@ -1,3 +1,6 @@
+// Access sequalize ORM library
+const Sequelize = require('sequelize');
+
 // Reference models
 const db = require('../models');
 
@@ -7,40 +10,78 @@ const router = require('express').Router();
 // Require scoring function
 const assessFile = require('../utils/scoring');
 
+
+// Export a function that takes app as a parameter
 module.exports = app => {
 
   // Get all files from the database
   router.get('/api/files', (req, res) => {
+
+    // Get all files from database and attach corresponding assessments
     db.File.findAll({include: [db.Assessment]})
+
+      // Access the files retrieved from the database
       .then(files => {
+
+         // Return the files to the front end as JSON
         res.json(files);
       })
-      .catch();
-  });
 
-  // Retrieve 1 file from request params
-  router.get('/api/file/:id', (req, res) => {
-    db.File.findById(req.params.id, {include: [db.Assessment]})
-      .then(file => {
-        console.log('backend');
-        res.json(file);
-      })
+      // Log errors if unsuccessful
       .catch(err => console.log(err));
   });
 
+  // Retrieve assessments from 1 file
+  router.get('/api/file-assessments/:id', (req, res) => {
+
+    // Get all assessments by corresponding file id
+    db.Assessment.findAll({where: {FileId: req.params.id}})
+
+      // Access the assessments retrieved from the database
+      .then(assessments => {
+
+        // Return the assessments to the front end as JSON
+        res.json(assessments);
+      })
+
+      // Log errors if unsuccessful
+      .catch(err => console.log(err));
+  });
+
+   // Retrieve scores from 1 file by date range
+   router.get('/api/date-range/:id', (req, res) => {
+
+    // Get all assessments by corresponding file id
+    db.Assessment.findAll({
+
+      // Filter by file id and date range
+      where: {
+        FileId: req.params.id,
+        createdAt: {
+          [Sequelize.Op.between]: [req.query.startDate, req.query.endDate]
+        } 
+      }})
+
+      // Access the assessments retrieved from the database
+      .then(assessments => {
+
+        // Return the assessments to the front end as JSON
+        res.json(assessments);
+      })
+
+      // Log errors if unsuccessful
+      .catch(err => console.log(err));
+
+  });
+
+
   // Create 1 file from name off of request body
   router.post('/api/file', (req, res) => {
+
+    
     db.File.create({name: req.body.name})
       .then(file => {
         res.json(file);
-      })
-      .catch();
-  });
-
-  router.get('/api/scores', (req, res) => {
-    db.Assessment.findAll({include: [db.File]})
-      .then(scores => {
-        res.json(scores);
       })
       .catch();
   });

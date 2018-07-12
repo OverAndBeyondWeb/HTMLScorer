@@ -17,8 +17,10 @@
     margin-bottom: 7px;
     cursor: pointer;
 
-    span {
+    a {
       display: inline-block;
+      text-decoration: none;
+      color: inherit;
       border-bottom: 2px solid transparent;
       transition: all .3s;
       

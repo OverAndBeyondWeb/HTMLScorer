@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Modal.module.scss';
 
 
@@ -8,7 +9,7 @@ const Modal = (props) => {
       <div className={styles.content}>
         {props.children}
       </div>
-      <div className={styles.backdrop} onClick={props.clicked}></div>
+      <Link to="/" className={styles.backdrop} onClick={props.clicked}></Link>
     </div>
   )
 };
