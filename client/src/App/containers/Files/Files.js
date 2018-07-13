@@ -11,6 +11,39 @@ import axios from 'axios';
 
 class Files extends Component {
 
+  state = {
+    filesPerRow: null
+  }
+
+  componentDidMount () {
+    this.getFilesPerRow();
+    window.onresize = this.getFilesPerRow;
+  }
+
+  getFilesPerRow = () => {
+    console.log(window.innerWidth);
+    if (window.innerWidth < 800) {
+      this.setState({
+        filesPerRow: 1});
+      return;
+    }
+
+    if (window.innerWidth < 1100) {
+      this.setState({
+        filesPerRow: 2});
+      return;
+    }
+
+    if (window.innerWidth < 1450) {
+      this.setState({
+        filesPerRow: 3});
+      return;
+    }
+
+    this.setState({
+      filesPerRow: 4});
+  }
+
   buildRows = (files, filesPerRow) => {
     const rows = [];
     const filesCopy = [...files];
@@ -37,16 +70,20 @@ class Files extends Component {
   }
 
   render() {
-    const rows = this.buildRows(this.props.files, 4);
+
+    console.log(this.state.filesPerRow);
+    const rows = this.buildRows(this.props.files, this.state.filesPerRow);
+
     const transformedRows = rows.map(row => {
       return (
         <Row key={row.id}>
           {row.columnsArray.map(file => {
             return (
-              <Column colType={'1-of-4'} key={file.id}>
+              <Column colType={'1-of-' + this.state.filesPerRow} key={file.id}>
                 <File 
                   name={file.name}
-                  id={file.id} 
+                  id={file.id}
+                  assessments={file.Assessments} 
                   showFileDetails={() => this.props.showFileDetails(file.id, file.name)}
                 />
               </Column>
@@ -57,7 +94,7 @@ class Files extends Component {
     });
 
     return (
-      <div className={styles.Files}>
+      <div className={styles.Files} id="allFiles">
         <Topbar class={'filesComponent'}>
           <h1>HTML Scorer</h1>
           <nav>

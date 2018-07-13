@@ -8,6 +8,10 @@ $gutter: 35px;
     margin-right: $gutter;
   }
 
+  &-1-of-1 {
+    width: 100%;
+  }
+
   &-1-of-2 {
     width: calc((100% - #{$gutter})/2);
   }

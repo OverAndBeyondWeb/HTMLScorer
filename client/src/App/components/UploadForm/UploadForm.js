@@ -12,8 +12,7 @@ const UploadForm = (props) => {
         <h1>HTML Scorer</h1>
         <nav>
           <ul>
-            <li><a>All Files</a></li>
-            <li><a>Top Score</a></li>
+            <li><a href="#allFiles">All Files</a></li>
           </ul>
         </nav>
         <hr/>
@@ -29,8 +28,11 @@ const UploadForm = (props) => {
         />
         <label htmlFor="upload">
           <i className="fas fa-upload" style={{marginRight: '5px'}}></i>
-          Choose a file...
+          {!props.inputs.fileChosen ? 'Choose a file...' : '1 file chosen'}
         </label>
+        
+        {/* 
+        *** This will be used to allow users to upload multiple files ***
         
         <Button type={'ghost'} width={'20%'}>
           Add File
@@ -38,7 +40,10 @@ const UploadForm = (props) => {
           <i className="fas fa-plus-circle"></i>
           </span>
           
-        </Button>
+        </Button> 
+        
+        ******************************************************************
+        */}
         <textarea 
           name="notes"
           id="notes"

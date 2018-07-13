@@ -10,15 +10,21 @@ class Upload extends Component {
 
 
   state = {
+    fileChosen: false,
     uploadFile: '',
     notes: ''
   }
 
   handleInputs = (e) => {
-    if (e.target.name === 'uploadForm') {
-      this.setState({uploadFile: e.target.files[0]})
+    console.log(e.target.name);
+    if (e.target.name === 'uploadFile') {
+      this.setState({
+        uploadFile: e.target.files,
+        fileChosen: true
+      })
+      
     } else {
-      this.setState({[e.target.name]: e.target.files});
+      this.setState({[e.target.name]: e.target.value});
     }  
     
   }
@@ -32,7 +38,7 @@ class Upload extends Component {
     
     axios.post('/api/upload-form', formData, {'Content-Type': 'multipart/form-data'})
       .then(resp => {
-        console.log(resp);
+        this.setState({uploadFile: ''})
       })
       .catch(err => console.log(err));
   }
