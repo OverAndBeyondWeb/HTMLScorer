@@ -103,8 +103,12 @@ module.exports = app => {
   });
 
   router.post('/api/upload-form', upload.single('uploadFile'), (req, res) => {
-    console.log(req.file);
-    res.end();
+    
+    db.File.create({name: req.file.originalname})
+      .then(file => {
+        res.json(file);
+      })
+      .catch();
   })
 
   return router;

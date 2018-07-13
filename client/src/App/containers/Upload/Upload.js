@@ -23,11 +23,14 @@ class Upload extends Component {
     
   }
 
-  submitFile = (file) => {
-    // e.preventDefault();
+  submitFile = (e) => {
+    e.preventDefault();
+    console.log(this.state)
+    let formData = new FormData();
 
+    formData.append('uploadFile', this.state.uploadFile[0]);
     
-    axios.post('/api/upload-form', {uploadFile:file}, {'Content-Type': 'multipart/form-data'})
+    axios.post('/api/upload-form', formData, {'Content-Type': 'multipart/form-data'})
       .then(resp => {
         console.log(resp);
       })

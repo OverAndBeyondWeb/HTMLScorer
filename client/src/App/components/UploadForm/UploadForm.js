@@ -25,7 +25,6 @@ const UploadForm = (props) => {
           type="file"
           name="uploadFile" id="upload"
           className={styles.upload}
-          value={props.inputs.uploadFile}
           onChange={props.handleInputs}
         />
         <label htmlFor="upload">
