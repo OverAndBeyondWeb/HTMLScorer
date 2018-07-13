@@ -54,10 +54,12 @@ const UploadForm = (props) => {
           onChange={props.handleInputs}
         > 
         </textarea>
+        <div className={styles.btnContainer}>
+          <Button type={'full'} width={'auto'} clicked={props.submitFile}>
+            Submit
+          </Button>
+        </div>
         
-        <Button type={'full'} width={'25%'} clicked={props.submitFile}>
-          Submit
-        </Button>
         
           
           

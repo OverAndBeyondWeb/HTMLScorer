@@ -49,6 +49,14 @@
   
 }
 
+.btnContainer {
+  width: 25%;
+
+  @media (max-width: 500px) {
+    width: 40%;
+  }
+}
+
 .plusIcon {
   margin-left: 10px;
   font-size: 22px;
