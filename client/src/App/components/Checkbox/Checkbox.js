@@ -12,7 +12,7 @@ const Checkbox = (props) => {
       <span className={styles.icon}>
           <i className="far fa-check-circle"></i>
         </span>
-       Select File
+       Select
     </label>
   );
 };

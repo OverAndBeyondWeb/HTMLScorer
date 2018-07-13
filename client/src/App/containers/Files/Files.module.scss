@@ -1,5 +1,14 @@
 .Files {
-  padding: 300px 100px;
+  padding: 200px 100px;
   background: #fff3ed;
   position: relative;
+
+  @media (max-width: 800px) {
+    padding: 150px 50px;
+  }
+}
+
+.playIcon {
+  margin-left: 10px;
+  transform: translateY(10px);
 }

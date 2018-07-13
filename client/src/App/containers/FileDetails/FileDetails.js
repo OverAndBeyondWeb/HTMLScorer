@@ -148,7 +148,7 @@ class FileDetails extends Component {
                 type={'ghost'}
                 width={'auto'}
                 >
-                  Prev File
+                  Prev
                 </Button>
               </li>
               <li>
@@ -157,7 +157,7 @@ class FileDetails extends Component {
                   type={'ghost'}
                   width={'100%'}
                 >
-                  Next File
+                  Next
                 </Button>
               </li>
               

@@ -22,7 +22,7 @@ class Files extends Component {
 
   getFilesPerRow = () => {
     console.log(window.innerWidth);
-    if (window.innerWidth < 800) {
+    if (window.innerWidth < 600) {
       this.setState({
         filesPerRow: 1});
       return;
@@ -99,12 +99,12 @@ class Files extends Component {
           <h1>HTML Scorer</h1>
           <nav>
             <ul>
-              <li><a>Selected Files[0]</a></li>
+              <li><a>Selected[0]</a></li>
               <li>
                 <Button type={'topbarRunBtn'} width={'auto'}>
                 Run Assessments
                 <span className={styles.playIcon}>
-                <i className="fas fa-play"></i>
+                  <i className="fas fa-play"></i>
                 </span>
               </Button>
               </li>
