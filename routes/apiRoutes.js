@@ -4,6 +4,18 @@ const Sequelize = require('sequelize');
 // Reference models
 const db = require('../models');
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, 'data/');
+  },
+
+  filename(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({storage: storage});
+
 // Use express router
 const router = require('express').Router();
 
@@ -89,6 +101,11 @@ module.exports = app => {
   router.post('/api/assess-file', (req, res) => {
     assessFile(req.body.name, req.body.id, res);
   });
+
+  router.post('/api/upload-form', upload.single('uploadFile'), (req, res) => {
+    console.log(req.file);
+    res.end();
+  })
 
   return router;
 };

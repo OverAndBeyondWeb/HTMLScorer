@@ -21,7 +21,13 @@ const UploadForm = (props) => {
       <form>
 
         <h2>Upload Files</h2>
-        <input type="file" name="upload" id="upload" className={styles.upload}/>
+        <input 
+          type="file"
+          name="uploadFile" id="upload"
+          className={styles.upload}
+          value={props.inputs.uploadFile}
+          onChange={props.handleInputs}
+        />
         <label htmlFor="upload">
           <i className="fas fa-upload" style={{marginRight: '5px'}}></i>
           Choose a file...
@@ -34,13 +40,20 @@ const UploadForm = (props) => {
           </span>
           
         </Button>
-        <textarea name="notes" id="notes" cols="30" rows="5" defaultValue="Add notes here...">
-          
+        <textarea 
+          name="notes"
+          id="notes"
+          cols="30"
+          rows="5"
+          defaultValue="Add notes here..."
+          value={props.inputs.note}
+          onChange={props.handleInputs}
+        > 
         </textarea>
         
-          <Button type={'full'} width={'25%'}>
-            Submit
-          </Button>
+        <Button type={'full'} width={'25%'} clicked={props.submitFile}>
+          Submit
+        </Button>
         
           
           
