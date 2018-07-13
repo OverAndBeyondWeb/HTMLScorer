@@ -16,7 +16,6 @@ class Upload extends Component {
   }
 
   handleInputs = (e) => {
-    console.log(e.target.name);
     if (e.target.name === 'uploadFile') {
       this.setState({
         uploadFile: e.target.files,

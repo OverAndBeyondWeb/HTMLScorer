@@ -16,12 +16,20 @@ class Files extends Component {
   }
 
   componentDidMount () {
+    /* ***********************************************
+    I used the resize event to calculate my responsive
+    grid layout
+    I chose this method along with floats to demonstrate
+    strategies for older browsers, however I am able to
+    acheive a responsive layout using flexbox or CSS
+    grid for modern browsers also
+    **************************************************/
     this.getFilesPerRow();
     window.onresize = this.getFilesPerRow;
   }
-
+  
+  // Choose number of files per row from screen size
   getFilesPerRow = () => {
-    console.log(window.innerWidth);
     if (window.innerWidth < 600) {
       this.setState({
         filesPerRow: 1});
@@ -43,7 +51,8 @@ class Files extends Component {
     this.setState({
       filesPerRow: 4});
   }
-
+  
+  // Create an array of data to build rows of files
   buildRows = (files, filesPerRow) => {
     const rows = [];
     const filesCopy = [...files];
@@ -63,6 +72,7 @@ class Files extends Component {
     return rows;
   }
 
+  // Score a file and add it to the database
   runAssessment = (name, id) => {
     axios.post('/api/assess-file', {name: name, id: id})
       .then()
@@ -71,9 +81,10 @@ class Files extends Component {
 
   render() {
 
-    console.log(this.state.filesPerRow);
+    // Create file data array
     const rows = this.buildRows(this.props.files, this.state.filesPerRow);
 
+    // Transform file data array to components in a grid
     const transformedRows = rows.map(row => {
       return (
         <Row key={row.id}>
@@ -93,11 +104,12 @@ class Files extends Component {
       );
     });
 
+    const note = 'These options would be used in a future version that allows the user to select a number of files and then score them all'
     return (
       <div className={styles.Files} id="allFiles">
         <Topbar class={'filesComponent'}>
           <h1>HTML Scorer</h1>
-          <nav>
+          <nav title={note}>
             <ul>
               <li><a>Selected[0]</a></li>
               <li>

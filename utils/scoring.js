@@ -33,11 +33,9 @@ module.exports = (filename, id, res) => {
   fs.readFile(`data/${filename}`, 'utf8', (err, data) => {
     if (err) throw err;
     parser.write(data);
-    // total = scores.reduce((acc, curr) => {
-    //   return acc + curr;
-    // });
-
-    total = Math.floor((Math.random() * 100) + 1);
+    total = scores.reduce((acc, curr) => {
+      return acc + curr;
+    });
 
     db.Assessment.create({score: total, FileId: id})
       .then(score => {

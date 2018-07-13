@@ -56,7 +56,6 @@ class FileDetails extends Component {
       }
     })
       .then(resp => {
-        console.log(resp.data);
         let scoresArray = resp.data.map(assessment => assessment.score);
         let scores = {
           allScores: this.getScoresInRange(scoresArray),
@@ -65,7 +64,6 @@ class FileDetails extends Component {
           avgScore: this.getAvgScore(scoresArray)
         }
         this.setState({scores});
-        console.log(this.state.activeFile);
       })
       .catch(err => console.log(err.message));
   }
