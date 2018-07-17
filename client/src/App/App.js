@@ -20,6 +20,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.retrieveFiles();
+  }
+
+  retrieveFiles = () => {
     axios.get('/api/files')
       .then(resp => {
         this.setState({files: resp.data});
@@ -61,6 +65,7 @@ class App extends Component {
           />
           <Files
             files={this.state.files}
+            retrieveFiles={this.retrieveFiles}
             showFileDetails={this.showFileDetails}
           />
         </div>

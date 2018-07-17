@@ -103,6 +103,13 @@ module.exports = app => {
     assessFile(req.body.name, req.body.id, res);
   });
 
+  // Run a scoring assessment for each item of files array
+  router.post('/api/assess-files', (req, res) => {
+    req.body.files.forEach(file => {
+      assessFile(file.name, file.id, res);
+    });
+  });
+
   // Insert a file entry to db from an uploaded file
   router.post('/api/upload-form', upload.single('uploadFile'), (req, res) => {
     

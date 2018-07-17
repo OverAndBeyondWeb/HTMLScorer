@@ -13,7 +13,8 @@ class Files extends Component {
 
   state = {
     filesPerRow: null,
-    selectedFiles: []
+    selectedFiles: [],
+    fileCount: 0
   }
 
   componentDidMount () {
@@ -83,25 +84,41 @@ class Files extends Component {
     return rows;
   }
 
-  // Score a file and add it to the database
-  runAssessment = (name, id) => {
-    axios.post('/api/assess-file', {name: name, id: id})
-      .then()
-      .catch();
+  // Score selected file(s) and add to the database
+  runAssessments = (name, id) => {
+    if (this.state.fileCount === 0) {
+      console.log('no files to run');
+    } else {
+      axios.post('/api/assess-files', {files: this.state.selectedFiles})
+        .then(resp => {
+          console.log(resp.data);
+          this.props.retrieveFiles();
+        })
+        .catch(err => console.log(err));
+    }
+    
   }
 
   selectDeselect = (name, id) => {
 
-    let selectedFiles = [...this.state.selectedFiles];
+    this.setState(prevState => {
 
-    if (selectedFiles.some((file, index) => file.id === id)) {
-      selectedFiles = selectedFiles.filter(file => file.id !== id);
-    } else {
-      selectedFiles = [...selectedFiles, {name, id}];
-    }
-    
-    this.setState({selectedFiles});
-    console.log(selectedFiles);
+      let selectedFiles = [...prevState.selectedFiles],
+        fileCount = prevState.fileCount;
+
+      if (selectedFiles.some((file, index) => file.id === id)) {
+        selectedFiles = selectedFiles.filter(file => file.id !== id);
+        fileCount--;
+      } else {
+        selectedFiles = [...selectedFiles, {name, id}];
+        fileCount++;
+      }
+
+      return {
+        selectedFiles,
+        fileCount
+      };
+    });
   }
 
   render() {
@@ -131,15 +148,16 @@ class Files extends Component {
     });
 
     const note = 'These options would be used in a future version that allows the user to select a number of files and then score them all'
+
     return (
       <div className={styles.Files} id="allFiles">
         <Topbar class={'filesComponent'}>
           <h1>HTML Scorer</h1>
           <nav title={note}>
             <ul>
-              <li><a>Selected[0]</a></li>
+              <li><a>Selected[{this.state.fileCount}]</a></li>
               <li>
-                <Button type={'topbarRunBtn'} width={'auto'}>
+                <Button type={'topbarRunBtn'} width={'auto'} clicked={this.runAssessments}>
                 Run Assessments
                 <span className={styles.playIcon}>
                   <i className="fas fa-play"></i>
