@@ -14,7 +14,8 @@ class FileDetails extends Component {
     filenamesAndIds: this.props.filenamesAndIds,
     scores: {},
     startDate: '',
-    endDate: ''
+    endDate: '',
+    assessed: null
   }
 
   componentDidMount() {
@@ -129,6 +130,10 @@ class FileDetails extends Component {
     axios.post('/api/assess-file', {name: filename, id: fileId})
       .then(resp => {
         this.retrieveFile(this.state.activeFile.fileId);
+        this.setState({assessed: resp.data});
+        window.onclick = () => {
+          this.setState({assessed: null});
+        }
       })
       .catch(err => console.log(err));
   }
@@ -168,6 +173,7 @@ class FileDetails extends Component {
                       handleDateChange={this.handleDateChange}
                       retrieveDateRangeScores={this.retrieveDateRangeScores}
                       runAssessment={this.runAssessment}
+                      assessed={this.state.assessed}
             />)}
           />
         

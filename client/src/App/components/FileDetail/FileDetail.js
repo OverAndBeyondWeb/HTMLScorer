@@ -4,6 +4,11 @@ import Button from '../Button/Button';
 import styles from './FileDetail.module.scss';
 
 const FileDetail = (props) => {
+
+  let message = props.assessed
+    ? `${props.assessed.message}! The file scored ${props.assessed.score} points`
+    : null;
+
   return (
     <div className={styles.FileDetail}>
       <div className={styles.score}>
@@ -44,6 +49,7 @@ const FileDetail = (props) => {
       <Button type={'full'} width={'100%'} clicked={() => props.runAssessment()}>
         Run Assessment
       </Button>
+      <div>{message}</div>
     </div>
     
   )
