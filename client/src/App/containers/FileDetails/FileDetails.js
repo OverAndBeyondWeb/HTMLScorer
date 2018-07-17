@@ -125,7 +125,7 @@ class FileDetails extends Component {
   }
 
   runAssessment = () => {
-    const { filename, fileId} = this.state.activeFile;
+    const { filename, fileId } = this.state.activeFile;
     axios.post('/api/assess-file', {name: filename, id: fileId})
       .then(resp => {
         this.retrieveFile(this.state.activeFile.fileId);

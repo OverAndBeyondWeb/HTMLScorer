@@ -95,21 +95,24 @@ module.exports = app => {
       .then(file => {
         res.json(file);
       })
-      .catch();
+      .catch(err => console.log(err));
   });
 
+  // Run a scoring assessment
   router.post('/api/assess-file', (req, res) => {
     assessFile(req.body.name, req.body.id, res);
   });
 
+  // Insert a file entry to db from an uploaded file
   router.post('/api/upload-form', upload.single('uploadFile'), (req, res) => {
     
     db.File.create({name: req.file.originalname})
       .then(file => {
         res.json(file);
       })
-      .catch();
+      .catch(err => console.log(err));
   })
 
+  // 
   return router;
 };
