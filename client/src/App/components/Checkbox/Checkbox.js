@@ -7,7 +7,7 @@ const Checkbox = (props) => {
   return (
    
     <label className={styles.Checkbox} title={note}>
-      <input type="checkbox"/>
+      <input type="checkbox" onChange={() => props.selectDeselect(props.name, props.id)}/>
       <span className={styles.checkbg}></span>
       <span className={styles.icon}>
           <i className="far fa-check-circle"></i>

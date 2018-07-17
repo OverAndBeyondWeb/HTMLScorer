@@ -22,7 +22,11 @@ const File = (props) => {
         <div>{latestScore}</div>
       </div>
       <div className={styles.action}>
-        <Checkbox/>
+        <Checkbox
+          selectDeselect={props.selectDeselect}
+          id={props.id}
+          name={props.name}
+        />
         <Link to={'/file-detail/fiel-' + props.id}>
         <Button type={'details'} width={'30%'} clicked={props.showFileDetails}>
           Details...

@@ -12,7 +12,8 @@ import axios from 'axios';
 class Files extends Component {
 
   state = {
-    filesPerRow: null
+    filesPerRow: null,
+    selectedFiles: []
   }
 
   componentDidMount () {
@@ -20,9 +21,9 @@ class Files extends Component {
     I used the resize event to calculate my responsive
     grid layout
     I chose this method along with floats to demonstrate
-    strategies for older browsers, however I am able to
+    strategies for older browsers, however I am also able to
     acheive a responsive layout using flexbox or CSS
-    grid for modern browsers also
+    grid for modern browsers
     **************************************************/
     this.getFilesPerRow();
     window.onresize = this.getFilesPerRow;
@@ -59,14 +60,24 @@ class Files extends Component {
     let rowIndex = 0;
 
     while(filesCopy.length !== 0) {
+
+      // Each rows array item is an object
       rows[rowIndex] = {};
+
+      // Set a key of 'columnsArray' to an empty array
       rows[rowIndex]['columnsArray'] = [];
+
+      // Set a key of 'id' to the value of rowIndex
       rows[rowIndex]['id'] = rowIndex;
 
       for (let i=0;i<filesPerRow;i++) {
+
+        // Pop off 1 file from filesCopy array and push it to the columns array
         rows[rowIndex]['columnsArray'].push(filesCopy.pop());
         if (filesCopy.length === 0) break;
       }
+
+      // Increment rowIndex to start a new row object item
       rowIndex++;
     }
     return rows;
@@ -77,6 +88,20 @@ class Files extends Component {
     axios.post('/api/assess-file', {name: name, id: id})
       .then()
       .catch();
+  }
+
+  selectDeselect = (name, id) => {
+
+    let selectedFiles = [...this.state.selectedFiles];
+
+    if (selectedFiles.some((file, index) => file.id === id)) {
+      selectedFiles = selectedFiles.filter(file => file.id !== id);
+    } else {
+      selectedFiles = [...selectedFiles, {name, id}];
+    }
+    
+    this.setState({selectedFiles});
+    console.log(selectedFiles);
   }
 
   render() {
@@ -96,6 +121,7 @@ class Files extends Component {
                   id={file.id}
                   assessments={file.Assessments} 
                   showFileDetails={() => this.props.showFileDetails(file.id, file.name)}
+                  selectDeselect={this.selectDeselect}
                 />
               </Column>
             );
