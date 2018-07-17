@@ -86,34 +86,53 @@ class Files extends Component {
 
   // Score selected file(s) and add to the database
   runAssessments = (name, id) => {
+
+    // Only run if at least 1 file is selected
     if (this.state.fileCount === 0) {
       console.log('no files to run');
     } else {
+
+      // send array of filenames and ids to backend
       axios.post('/api/assess-files', {files: this.state.selectedFiles})
         .then(resp => {
-          console.log(resp.data);
+
+          // Ajax to update the UI
           this.props.retrieveFiles();
         })
+
+        // Log errors if unsuccessful
         .catch(err => console.log(err));
     }
     
   }
 
+  // Fill selectedFiles array in state
   selectDeselect = (name, id) => {
 
+    // Set state with a function
     this.setState(prevState => {
 
+      // Copy this.state.selectedFiles and fileCount
       let selectedFiles = [...prevState.selectedFiles],
         fileCount = prevState.fileCount;
 
       if (selectedFiles.some((file, index) => file.id === id)) {
+
+        // Remove file obj from selectedFiles array
         selectedFiles = selectedFiles.filter(file => file.id !== id);
+
+        // Subtract 1 from fileCount
         fileCount--;
       } else {
+
+        // Add file obj to selectedFiles array
         selectedFiles = [...selectedFiles, {name, id}];
+
+        // Add 1 to file count
         fileCount++;
       }
 
+      // set state with new values
       return {
         selectedFiles,
         fileCount
@@ -147,13 +166,11 @@ class Files extends Component {
       );
     });
 
-    const note = 'These options would be used in a future version that allows the user to select a number of files and then score them all'
-
     return (
       <div className={styles.Files} id="allFiles">
         <Topbar class={'filesComponent'}>
           <h1>HTML Scorer</h1>
-          <nav title={note}>
+          <nav>
             <ul>
               <li><a>Selected[{this.state.fileCount}]</a></li>
               <li>

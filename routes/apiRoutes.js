@@ -90,7 +90,6 @@ module.exports = app => {
   // Create 1 file from name off of request body
   router.post('/api/file', (req, res) => {
 
-    
     db.File.create({name: req.body.name})
       .then(file => {
         res.json(file);
