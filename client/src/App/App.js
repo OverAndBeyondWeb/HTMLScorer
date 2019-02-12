@@ -61,6 +61,7 @@ class App extends Component {
           {showModal}
           <Upload 
             files={this.state.files}
+            retrieveFiles={this.retrieveFiles}
             showFileDetails={this.showFileDetails}
           />
           <Files

@@ -37,7 +37,8 @@ class Upload extends Component {
     
     axios.post('/api/upload-form', formData, {'Content-Type': 'multipart/form-data'})
       .then(resp => {
-        this.setState({uploadFile: ''})
+        this.setState({uploadFile: ''});
+        this.props.retrieveFiles();  
       })
       .catch(err => console.log(err));
   }
