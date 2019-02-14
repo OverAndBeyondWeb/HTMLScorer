@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 const db = require('./models');
 
 app.use(require('./routes/apiRoutes')(app));
-require('./seed')(app);
+//require('./seed')(app);
 
 db.sequelize.sync({}).then(() => {
   // Start server to begin listening
