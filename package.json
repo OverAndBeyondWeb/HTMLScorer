@@ -11,16 +11,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "npm run client-install"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb.git"
-  },
   "author": "Juan Fox",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb/issues"
-  },
-  "homepage": "https://github.com/RedVentures22/scoring-project-OverAndBeyondWeb#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.0",
