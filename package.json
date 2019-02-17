@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "start": "node server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm run client-install"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-install"
   },
   "author": "Juan Fox",
   "license": "ISC",
