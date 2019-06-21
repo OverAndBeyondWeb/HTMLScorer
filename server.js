@@ -25,7 +25,7 @@ if (process.env.NODE_ENV) {
   });
 }
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   // Start server to begin listening
   app.listen(PORT, () => {
     console.log(`App listening on port: ${PORT}`);
